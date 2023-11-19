@@ -1,0 +1,248 @@
+.app{
+    .container{
+        .auth {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+          }
+          h1{
+            text-align: center;
+          }
+          form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+          
+          label {
+            font-weight: bold;
+          }
+          
+          input[type="text"],
+          input[type="email"],
+          input[type="password"],
+          select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+          }
+          
+          button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+          }
+          
+          button:hover {
+            background-color: #45a049;
+          }
+          
+          span {
+            margin-top: 10px;
+            text-align: center;
+          }
+          
+          .link {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+          }
+          
+          .link:hover {
+            text-decoration: underline;
+          }
+          
+        
+       }
+    }
+    .navbar {
+      background-color: #333;
+      color: white;
+      padding: 10px 0;
+    }
+    
+    .navbar-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .navbar-link {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    
+    .navbar-link:first-child {
+      margin-left: 0;
+    }
+    .footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .home {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+
+    .upcoming-events {
+      text-align: left; /* Align the text to the left */
+      width: 80%; /* Adjust the width as needed */
+      margin-bottom: 20px;
+    }
+    .event-container {
+      display: flex;
+      justify-content: space-between;
+      width: 80%; /* Adjust the width as needed */
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    .even-event {
+      flex-direction: row-reverse; /* Reverse the order of elements for even events */
+    }
+    
+    .event-image img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-left: 20px;
+    }
+    
+    .event-details {
+      text-align: left;
+    }
+    
+    .event-details h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    
+    .event-details a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    .event-details a:hover {
+      text-decoration: underline;
+    }
+
+.club-admin-dashboard {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.menu-dropdown {
+  margin: 50px;
+
+}
+
+.selected-option-content {
+  margin-top: 20px;
+  width: 100px;
+}
+
+/* Style for react-dropdown-select */
+.react-dropdown-select-container {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.react-dropdown-select-dropdown {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.react-dropdown-select-option {
+  padding: 8px 16px;
+}
+
+.react-dropdown-select-option:hover {
+  background-color: #f5f5f5;
+}
+
+/* Add these styles in your CSS file or style section */
+
+.club-member-dashboard {
+  text-align: center;
+  padding: 20px;
+}
+
+.complete-profile-btn {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.club-list {
+  margin-top: 30px;
+}
+
+.highlighted-clubs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.club-highlight {
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #2196f3;
+  color: white;
+}
+
+.add-club-btn {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.add-event-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-event-form {
+  display: grid;
+  grid-row-gap: 15px;
+}
+
+/* Add more styling as needed */
