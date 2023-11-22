@@ -50,7 +50,7 @@ const router = createBrowserRouter([
     element: <AddEvent />,
   },
   {
-    path: ":clubname/:eventname/event/edit", // Dynamic route for admin (club)
+    path: ":clubname/:eventname/edit", // Dynamic route for admin (club)
     element: <EditEvent />,
   },
 

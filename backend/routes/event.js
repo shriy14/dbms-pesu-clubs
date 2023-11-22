@@ -13,7 +13,7 @@ router.post("/:clubname/event", upload.single('banner'), addEvent);
 
 router.get("/", getEventDetails);
 router.get("/:clubname", getEvent);
-router.post("/:clubname/:eventname/event/edit", upload.single('banner'), editEvent);
+router.post("/:clubname/:eventname/edit", upload.single('banner'), editEvent);
 router.delete("/delete/:eventname", deleteEvent); //MAKE CHANGES!!!!!!!!
 
 export default router;

@@ -4,7 +4,7 @@ export const db = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "@Sana121",
-  database: "help", //test2
+  database: "pesu", //help
 });
 
 db.connect((err) => {

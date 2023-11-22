@@ -10,14 +10,14 @@ export const getMemberDetails = (req, res) => {
     }
 
     if (data.length) {
-      // Extract member details
+     
       const memberDetails = {
         SRN: data[0].SRN,
         name: data[0].name,
         email: data[0].email,
       };
 
-      // Query to get clubs that the member is part of from the ClubMember table
+      
       const getClubsQuery = "SELECT clubname FROM ClubMember WHERE SRN = ?";
 
       db.query(getClubsQuery, [srn], (err, clubData) => {
@@ -25,7 +25,7 @@ export const getMemberDetails = (req, res) => {
           return res.status(500).json(err);
         }
 
-        // Add the list of clubs to the memberDetails object
+        
         memberDetails.clubs = clubData.map((item) => item.clubname);
 
         return res.status(200).json(memberDetails);
@@ -48,7 +48,7 @@ export const getAllMembersInClub = (req, res) => {
       WHERE clubname = ?
   );`;
   
-
+ 
   db.query(getAllMembersQuery, [clubname], (err, data) => {
     if (err) {
       return res.status(500).json(err);
@@ -59,8 +59,7 @@ export const getAllMembersInClub = (req, res) => {
         SRN: member.SRN,
         name: member.name,
         email: member.email,
-        domainname: member.domainname, // Add domainname to the mapping
-        phoneno: member.phoneno,       // Add phoneno to the mapping
+        phoneno: member.phoneno,       
         sem: member.sem,               
         dept: member.dept,           
         gender: member.gender,         
@@ -132,3 +131,24 @@ export const getBudget = (req, res) => {
     }
   });
 };
+
+export const deleteMember = (req,res) => {
+  const { srn } = req.params;
+
+  const q = 'DELETE FROM ClubMember WHERE SRN = ?';
+
+  db.query(q, [srn], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+      return;
+    }
+
+    if (result.affectedRows === 0) {
+      res.status(404).json({ error: 'Member not found' });
+      return;
+    }
+
+    res.status(200).json({ message: 'Member deleted successfully' });
+  });
+}

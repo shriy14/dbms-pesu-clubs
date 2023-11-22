@@ -1,55 +1,60 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Event = ({ clubname, budget, events,  handleEdit, handleDelete }) => {
-  
 
-  return (
-    <div style={styles.container}>
-      <h3 style={styles.title}>Club Events</h3>
-      <p style={{textAlign:'center',marginTop:'10px'}}>Total Budget: {budget}</p> 
-      {events.map((event) => (
-        <div key={event.eventid} className="event-container" style={styles.eventContainer}>
-          <div className="content" style={styles.content}>
-            <div className="event-details" style={styles.eventDetails}>
-              <h2 style={styles.eventName}>{event.eventname}</h2>
-              <p>{event.description}</p>
-              <a href={event.registrationlink} target="_blank" rel="noopener noreferrer">
-                Registration Link
-              </a>
+  const Event = ({ clubname, totalBudget, events, handleEdit, handleDelete }) => {
+    return (
+      <div style={styles.container}>
+        <h3 style={styles.title}>Club Events</h3>
+        <p style={{ textAlign: 'center', marginTop: '10px' }}>Total Budget: {totalBudget}</p>
+        {events.map((event) => (
+          <div key={event.eventid} className="event-container" style={styles.eventContainer}>
+            <div className="content" style={styles.content}>
+              <div className="event-details" style={styles.eventDetails}>
+                <h2 style={styles.eventName}>{event.eventname}</h2>
+                <p>{event.description}</p>
+                <p>
+                  <strong>Budget:</strong> {event.budget}
+                </p>
+                <p>
+                  <strong>Time:</strong> {new Date(event.timestamp).toLocaleString()}
+                </p>
+                <p>
+                  <strong>Location:</strong> {event.loc}
+                </p>
+                <a href={event.registrationlink} target="_blank" rel="noopener noreferrer">
+                  Registration Link
+                </a>
+              </div>
+              <div className="button-container" style={styles.buttonContainer}>
+                <button onClick={() => handleEdit(event.eventname)} style={styles.button}>
+                  Edit
+                </button>
+                <button onClick={() => handleDelete(event.eventname)} style={styles.button}>
+                  Delete
+                </button>
+              </div>
             </div>
-            <div className="button-container" style={styles.buttonContainer}>
-            <button
-              onClick={() => handleEdit(event.eventname)}
-              style={styles.button}
-              
-            >
-             Edit
-            </button>
-              <button onClick={() => handleDelete(event.eventname)} style={styles.button}>
-                Delete
-              </button>
+            <div className="event-image" style={styles.eventImage}>
+              {event.banner && (
+                <img
+                  src={`data:image/jpeg;base64,${btoa(
+                    String.fromCharCode(...new Uint8Array(event.banner.data))
+                  )}`}
+                  alt={`Event ${event.eventid}`}
+                />
+              )}
             </div>
           </div>
-          <div className="event-image" style={styles.eventImage}>
-            {event.banner && (
-              <img
-                src={`data:image/jpeg;base64,${btoa(String.fromCharCode(...new Uint8Array(event.banner.data)))}`}
-                alt={`Event ${event.eventid}`}
-              />
-            )}
-          </div>
+        ))}
+        <div style={styles.addEventButtonContainer}>
+          <Link to={`/${clubname}/event`} style={styles.addButton}>
+            Add Event
+          </Link>
         </div>
-      ))}
-      <div style={styles.addEventButtonContainer}>
-        <Link to={`/${clubname}/event`} style={styles.addButton}>
-          Add Event
-        </Link>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 const styles = {
   title: {
@@ -80,7 +85,9 @@ const styles = {
     color: '#3ec1d3',
   },
   eventImage: {
+    marginTop:`20px`,
     textAlign: 'right',
+    
   },
   buttonContainer: {
     display: 'flex',

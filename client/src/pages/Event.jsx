@@ -1,5 +1,3 @@
-// components/AddEvent.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -43,12 +41,9 @@ const AddEvent = () => {
       });
 
       console.log(res);
-
-      // Handle success, e.g., show a success message or redirect
-      navigate('/');
+      navigate(-1);
     } catch (err) {
       console.error(err);
-      // Handle error, e.g., show an error message
     }
   };
 

@@ -8,7 +8,7 @@ const EditEvent = () => {
   const navigate = useNavigate();
 
   const [eventDetails, setEventDetails] = useState({
-    eventname: '',
+    newEventName: '',
     description: '',
     loc: '',
     type: '',
@@ -36,20 +36,18 @@ const EditEvent = () => {
         formData.append(key, eventDetails[key]);
       }
 
-      // Make the API request to add the event
-      const res = await axios.post(`/events/${clubname}/${eventname}/event/edit`, formData, {
+      const res = await axios.post(`/events/${clubname}/${eventname}/edit`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
       console.log(res);
-
-      // Handle success, e.g., show a success message or redirect
-      navigate('/');
+      navigate(-1);
+      
     } catch (err) {
       console.error(err);
-      // Handle error, e.g., show an error message
+      
     }
   };
 
@@ -58,7 +56,7 @@ const EditEvent = () => {
       <div className="auth">
         <h1>Update {eventname}</h1>
         <form encType="multipart/form-data">
-          <input type="text" placeholder="Event Name" name="eventname" onChange={handleChange} />
+          <input type="text" placeholder="Event Name" name="newEventName" onChange={handleChange} />
           <textarea placeholder="Description" name="description" onChange={handleChange} />
           <input type="text" placeholder="Location" name="loc" onChange={handleChange} />
           <input type="text" placeholder="Type" name="type" onChange={handleChange} />

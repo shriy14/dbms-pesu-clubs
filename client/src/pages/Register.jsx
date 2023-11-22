@@ -17,7 +17,7 @@ const Register = () => {
     dept: '', 
     phoneno: '', 
     gender: '',
-    domain: 'Design',  // New field for domain selection
+    domain: 'Design', 
   });
 
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ const Register = () => {
       navigate('/login');
     } catch (err) {
       console.log(err);
+      alert("Couldn't Register. Please Try Again")
     }
   };
 

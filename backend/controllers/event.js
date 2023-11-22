@@ -30,23 +30,25 @@ export const getEvent = (req, res) => {
 
 export const editEvent = (req, res) => {
   const { clubname } = req.params;
+  const { eventname } = req.params;
+
   const {
-    eventname,
+    newEventName,
     description,
     loc,
     type,
     timestamp,
     budget,
     registrationlink,
-    banner,
   } = req.body;
+  const banner = req.file;
 
   const setValues = [];
   const setColumns = [];
 
-  if (eventname !== null && eventname !== '') {
+  if (newEventName !== null && newEventName !== '') {
     setColumns.push('eventname=?');
-    setValues.push(eventname);
+    setValues.push(newEventName);
   }
   if (description !== null && description !== '') {
     setColumns.push('description=?');
@@ -72,19 +74,27 @@ export const editEvent = (req, res) => {
     setColumns.push('registrationlink=?');
     setValues.push(registrationlink);
   }
-  if (banner !== null) {
+  if (banner !== null && banner !== undefined) {
     setColumns.push('banner=?');
-    setValues.push(banner);
+    setValues.push(banner.buffer); // Assuming req.file is a Buffer
   }
+
+  if (setColumns.length === 0) {
+    // No valid columns to update
+    res.status(400).json({ error: 'No valid update parameters provided' });
+    return;
+  }
+
+  const setClause = setColumns.join(', ');
 
   const q = `
     UPDATE Event
-    SET ${setColumns.join(', ')}
+    SET ${setClause}
     WHERE clubname=? AND eventname=?
   `;
 
   const queryParams = [...setValues, clubname, eventname];
-  
+
   db.query(q, queryParams, (err, result) => {
     if (err) {
       console.error(err);
@@ -122,6 +132,8 @@ export const deleteEvent = (req, res) => {
     res.status(200).json({ message: 'Event deleted successfully' });
   });
 };
+
+
 export const addEvent = (req, res) => {
   const { clubname } = req.params;
   const {
@@ -135,7 +147,7 @@ export const addEvent = (req, res) => {
   } = req.body;
   const banner = req.file;
 
-  // Your validation logic goes here...
+
 
   const insertEventQuery = `
     INSERT INTO Event 

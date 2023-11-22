@@ -23,7 +23,7 @@ const ClubMember = () => {
           const data = await response.json();
           setMemberDetails(data);
 
-          // Move the call to fetchClubEvents here to ensure memberDetails is updated first
+          
           if (data && data.clubs.length > 0 && isMounted) {
             const clubname = data.clubs[0];
             const eventsResponse = await fetch(`/events/${clubname}`);

@@ -6,41 +6,39 @@ export const register = (req, res) => {
   const checkUserQuery = "SELECT * FROM Member WHERE email = ?";
   db.query(checkUserQuery, [email], (err, data) => {
     if (err) {
-      return res.status(500).json(err);
+      return res.status(500).json({ error: err.message });
     }
 
     if (data.length) {
-      return res.status(409).json("User already exists");
+      return res.status(409).json({ error: "User already exists" });
     }
 
-    let insertQuery, values;
-
     if (userType === 'club') {
-      insertQuery = "INSERT INTO Club (`clubname`, `facultyid`, `headSRN`, `type`) VALUES (?, ?, ?, ?)";
-      values = [clubName, facultyId, headSrn, clubType];
+      const insertClubQuery = "INSERT INTO Club (`clubname`, `facultyid`, `headSRN`, `type`) VALUES (?, ?, ?, ?)";
+      const valuesClub = [clubName, facultyId, headSrn, clubType];
 
-      const insertQueryMember = "INSERT INTO Member (`SRN`, `name`, `email`, `password`, `sem`, `dept`, `phoneno`, `gender`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      const insertMemberQuery = "INSERT INTO Member (`SRN`, `name`, `email`, `password`, `sem`, `dept`, `phoneno`, `gender`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
       const valuesMember = [headSrn, name, email, password, sem, dept, phoneno, gender];
 
-      db.query(insertQueryMember, valuesMember, (err, data) => {
+      db.query(insertMemberQuery, valuesMember, (err, data) => {
         if (err) {
-          return res.status(500).json(err);
+          return res.status(500).json({ error: err.message });
         }
 
-        db.query(insertQuery, values, (err, data) => {
+        db.query(insertClubQuery, valuesClub, (err, data) => {
           if (err) {
-            return res.status(500).json(err);
+            return res.status(500).json({ error: err.message });
           }
 
-          const insertQueryClubMember = "INSERT INTO ClubMember (`SRN`, `clubname`) VALUES (?, ?)";
+          const insertClubMemberQuery = "INSERT INTO ClubMember (`SRN`, `clubname`) VALUES (?, ?)";
           const valuesClubMember = [headSrn, clubName];
 
-          db.query(insertQueryClubMember, valuesClubMember, (err, data) => {
+          db.query(insertClubMemberQuery, valuesClubMember, (err, data) => {
             if (err) {
-              return res.status(500).json(err);
+              return res.status(500).json({ error: err.message });
             }
 
-            return res.status(200).json("Club has been created");
+            return res.status(200).json({ message: "Club has been created" });
           });
         });
       });
@@ -49,47 +47,46 @@ export const register = (req, res) => {
 
       db.query(checkDomainQuery, [domain], (err, domainData) => {
         if (err) {
-          return res.status(500).json(err);
+          return res.status(500).json({ error: err.message });
         }
 
         if (domainData.length === 0) {
-          return res.status(404).json("Domain not found");
+          return res.status(404).json({ error: "Domain not found" });
         }
 
         const domainId = domainData[0].domainid;
 
-        insertQuery = "INSERT INTO Member (`SRN`, `name`, `email`, `password`, `sem`, `dept`, `phoneno`, `gender`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        values = [srn, name, email, password, sem, dept, phoneno, gender];
+        const insertMemberQuery = "INSERT INTO Member (`SRN`, `name`, `email`, `password`, `sem`, `dept`, `phoneno`, `gender`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        const valuesMember = [srn, name, email, password, sem, dept, phoneno, gender];
 
-        db.query(insertQuery, values, (err, data) => {
+        db.query(insertMemberQuery, valuesMember, (err, data) => {
           if (err) {
-            return res.status(500).json(err);
+            return res.status(500).json({ error: err.message });
           }
 
-          const insertQueryMemberDomain = "INSERT INTO ClubDomain (`domainid`, `SRN`, `clubname`) VALUES (?, ?, ?)";
+          const insertMemberDomainQuery = "INSERT INTO ClubDomain (`domainid`, `SRN`, `clubname`) VALUES (?, ?, ?)";
           const valuesMemberDomain = [domainId, srn, clubName];
 
-          db.query(insertQueryMemberDomain, valuesMemberDomain, (err, data) => {
+          db.query(insertMemberDomainQuery, valuesMemberDomain, (err, data) => {
             if (err) {
-              return res.status(500).json(err);
+              return res.status(500).json({ error: err.message });
             }
 
-            return res.status(200).json("User has been created");
-          });
-          const insertQueryClubMember = "INSERT INTO ClubMember (`SRN`, `clubname`) VALUES (?, ?)";
-          const valuesClubMember = [srn, clubName];
+            const insertClubMemberQuery = "INSERT INTO ClubMember (`SRN`, `clubname`) VALUES (?, ?)";
+            const valuesClubMember = [srn, clubName];
 
-          db.query(insertQueryClubMember, valuesClubMember, (err, data) => {
-            if (err) {
-              return res.status(500).json(err);
-            }
+            db.query(insertClubMemberQuery, valuesClubMember, (err, data) => {
+              if (err) {
+                return res.status(500).json({ error: err.message });
+              }
 
-            return res.status(200).json("Club has been created");
+              return res.status(200).json({ message: "User has been created" });
+            });
           });
         });
       });
     } else {
-      return res.status(400).json("Invalid user type");
+      return res.status(400).json({ error: "Invalid user type" });
     }
   });
 };

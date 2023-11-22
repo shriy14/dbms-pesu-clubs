@@ -1,4 +1,3 @@
-// adminController.js
 import { db } from '../db.js';
 
 export const getClubDetails = (req, res) => {

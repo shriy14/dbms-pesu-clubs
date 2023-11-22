@@ -7,8 +7,8 @@ const Login = () => {
   const [inputs, setInputs] = useState({
     password: '',
     userType: '', 
-    srn: '', // Add SRN state for member login
-    clubName: '', // Add clubName state for club login
+    srn: '', 
+    clubName: '', 
   });
 
   console.log(inputs);
@@ -23,7 +23,6 @@ const Login = () => {
       const res = await axios.post('/auth/login', inputs);
       console.log(res.data);
 
-      // Redirect based on user type
       if (inputs.userType === 'member') {
         navigate(`/member/${inputs.srn}`);
       } else if (inputs.userType === 'clubHead') {
@@ -31,6 +30,7 @@ const Login = () => {
       }
     } catch (err) {
       console.log(err);
+      alert("Wrong Username/Password!")
     }
   };
 

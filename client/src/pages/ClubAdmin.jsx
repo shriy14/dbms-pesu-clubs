@@ -41,9 +41,32 @@ const ClubAdmin = () => {
     };
   
   const handleEditEvent = (eventname) => {
-    // Redirect to the edit event page
-    navigate(`/${clubname}/${eventname}/event/edit`);
+    navigate(`/${clubname}/${eventname}/edit`);
   };
+
+  const handleDeleteMember = async (srn) => {
+    try {
+      const response = await fetch(`/member/delete/${srn}`, {
+        method: 'DELETE',
+      });
+
+      const data = await response.json();
+
+      // If the delete operation is successful, update the state to reflect the changes
+      if (response.ok) {
+        setClubMembers((prevMembers) =>
+          prevMembers.filter((member) => member.SRN !== srn)
+        );
+        console.log('Event deleted successfully');
+        alert('Event deleted successfully')
+      } else {
+        console.error('Failed to delete event:', data);
+      }
+    } catch (err) {
+      console.error('Error deleting event: ', err);
+    }
+  };
+
   useEffect(() => {
     const fetchClubDetails = async () => {
       try {
@@ -58,8 +81,6 @@ const ClubAdmin = () => {
         console.error('Error fetching club details: ', error);
       }
     };
-
-    
 
     const fetchClubEvents = async () => {
       try {
@@ -143,7 +164,7 @@ const ClubAdmin = () => {
             
             <p style={{textAlign:'center',marginTop:'10px'}}>Member Count: {memberCount}</p>
            
-            <Members members={clubMembers} />
+            <Members members={clubMembers} handleDelete={handleDeleteMember}/>
           </div>
         );
       case 'events':
