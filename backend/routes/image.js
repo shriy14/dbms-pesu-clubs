@@ -1,7 +1,7 @@
 // routes/image.js
 import express from 'express';
 import { Upload } from '../controllers/image.js';
-import multer from 'multer'
+import multer from 'multer';
 
 const router = express.Router();
 
@@ -10,8 +10,6 @@ const storage = multer.memoryStorage(); // Store the file as a buffer in memory
 const upload = multer({ storage });
 
 // Define the route for image upload
-router.post('/', upload.single('image'), Upload);
-
-
+router.post('/:clubname/upload', upload.single('image'), Upload);
 
 export default router;

@@ -1,9 +1,10 @@
-// components/ClubAdmin.js
-
 import React, { useState, useEffect } from 'react';
-import Members from '../components/Member';
+// import Members from '../components/Member';
 import Events from '../components/Event';
+import Members from '../components/Member'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import axios from "axios"
 
 const ClubAdmin = () => {
   const { clubname } = useParams();
@@ -11,8 +12,38 @@ const ClubAdmin = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [clubMembers, setClubMembers] = useState([]);
   const [clubEvents, setClubEvents] = useState([]);
-  const [memberCount, setMemberCount] = useState(null); // New state for member count
-
+  const [memberCount, setMemberCount] = useState(null);
+  const [totalBudget, setTotalBudget] = useState(null); // New state for member count
+  const navigate = useNavigate();
+    console.log(clubEvents)
+    const handleDelete = async (eventname) => {
+      
+      try {
+        const response = await fetch(`/events/delete/${eventname}`, {
+          method: 'DELETE',
+        });
+    
+        const data = await response.json();
+    
+        // If the delete operation is successful, update the state to reflect the changes
+        if (response.ok) {
+          setClubEvents((prevEvents) =>
+            prevEvents.filter((event) => event.eventname !== eventname)
+          );
+          console.log('Event deleted successfully');
+          alert('Event deleted successfully')
+        } else {
+          console.error('Failed to delete event:', data);
+        }
+      } catch (err) {
+        console.error('Error deleting event: ', err);
+      }
+    };
+  
+  const handleEditEvent = (eventname) => {
+    // Redirect to the edit event page
+    navigate(`/${clubname}/${eventname}/event/edit`);
+  };
   useEffect(() => {
     const fetchClubDetails = async () => {
       try {
@@ -28,35 +59,7 @@ const ClubAdmin = () => {
       }
     };
 
-    const fetchMemberCount = async () => {
-      try {
-        const response = await fetch(`/member/admin/${clubname}`);
-        
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data)
-          setMemberCount(data.memberCount);
-        } else {
-          console.error('Failed to fetch member count');
-        }
-      } catch (error) {
-        console.error('Error fetching member count: ', error);
-      }
-    };
-
-    const fetchClubMembers = async () => {
-      try {
-        const response = await fetch(`/member/admin/${clubname}`);
-        if (response.ok) {
-          const data = await response.json();
-          setClubMembers(data);
-        } else {
-          console.error('Failed to fetch club members');
-        }
-      } catch (error) {
-        console.error('Error fetching club members: ', error);
-      }
-    };
+    
 
     const fetchClubEvents = async () => {
       try {
@@ -74,13 +77,57 @@ const ClubAdmin = () => {
       }
     };
 
+    const fetchMemberCount = async () => {
+      try {
+        const response = await fetch(`/member/admin/count/${clubname}`);
+        if (response.ok) {
+          const data = await response.json();
+          setMemberCount(data.memberCount);
+        } else {
+          console.error('Failed to fetch member count');
+        }
+      } catch (error) {
+        console.error('Error fetching club details: ', error);
+      }
+    };
+
+    const fetchTotalBudget = async () => {
+      try {
+        const response = await fetch(`/member/admin/budget/${clubname}`);
+        if (response.ok) {
+          const data = await response.json();
+          setTotalBudget(data.totalBudget);
+        } else {
+          console.error('Failed to fetch member count');
+        }
+      } catch (error) {
+        console.error('Error fetching club details: ', error);
+      }
+    };
+
+    const fetchClubMembers = async () => {
+      try {
+        const response = await fetch(`/member/admin/allmembers/${clubname}`);
+        if (response.ok) {
+          const data = await response.json();
+          setClubMembers(data);
+        } else {
+          console.error('Failed to fetch club members');
+        }
+      } catch (error) {
+        console.error('Error fetching club details: ', error);
+      }
+    };
+
     fetchClubDetails();
     fetchMemberCount(); // Fetch member count
     fetchClubMembers();
     fetchClubEvents();
+    fetchTotalBudget();
+    
   }, [clubname]);
 
-  if (!clubDetails || memberCount === null) {
+  if (!clubDetails) {
     return <div>Loading...</div>;
   }
 
@@ -94,53 +141,51 @@ const ClubAdmin = () => {
         return (
           <div>
             
-            <p>Member Count: {memberCount}</p>
+            <p style={{textAlign:'center',marginTop:'10px'}}>Member Count: {memberCount}</p>
+           
             <Members members={clubMembers} />
           </div>
         );
       case 'events':
-        return clubEvents ? <Events events={clubEvents} /> : null;
+       
+        return clubEvents ? <Events budget = {totalBudget} clubname = {clubname} events={clubEvents} handleDelete={handleDelete} handleEdit={handleEditEvent}/> : null;
       default:
         return null;
     }
   };
-
   return (
-    <div style={styles.container}>
-      <h2>Club Admin Page</h2>
-      <h3>Club Name: {clubDetails.clubname}</h3>
-      <p>Type: {clubDetails.type}</p>
-      <p>Faculty ID: {clubDetails.facultyid}</p>
-      <p>Head SRN: {clubDetails.headid}</p>
+    <div className="club-member-dashboard">
+      <div className="header">
+        <h1 style={{ color: '#3ec1d3' }}>Hi, {clubDetails.clubname} Admin!</h1>
+        <button className="logout-btn" onClick={() => navigate('/')}>
+          Logout
+        </button>
+      </div>
+      <div className="club-list">
+        <h3>Club Details:</h3>
+        <p>Type: {clubDetails.type}</p>
+        <p>Faculty ID: {clubDetails.facultyid}</p>
+        <p>Head SRN: {clubDetails.headSRN}</p>
 
-      {/* Navigation Menu */}
-      <nav>
-        <label htmlFor="options">Select an option:</label>
-        <select
-          id="options"
-          value={selectedOption}
-          onChange={(e) => handleOptionChange(e.target.value)}
-        >
-          <option value="">Select an option</option>
-          <option value="members">Members</option>
-          <option value="events">Events</option>
-        </select>
-      </nav>
+        {/* Navigation Menu */}
+        <nav style={{ marginTop: '18px' }}>
+          <label htmlFor="options">Select an option:</label>
+          <select
+            id="options"
+            value={selectedOption}
+            onChange={(e) => handleOptionChange(e.target.value)}
+          >
+            <option value="">Select an option</option>
+            <option value="members">Members</option>
+            <option value="events">Events</option>
+          </select>
+        </nav>
 
-      {/* Render the selected component */}
-      <div style={styles.componentContainer}>{renderComponent()}</div>
+        {/* Render the selected component */}
+        <div className="upcoming-events-member">{renderComponent()}</div>
+      </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    textAlign: 'center',
-    marginTop: '50px',
-  },
-  componentContainer: {
-    marginTop: '20px',
-  },
 };
 
 export default ClubAdmin;

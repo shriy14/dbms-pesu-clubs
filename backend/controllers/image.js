@@ -2,12 +2,12 @@ import { db } from "../db.js";
 
 export const Upload = (req, res) => {
   const imageData = req.file.buffer;
-
+  const { clubname } = req.params;
   // Update the 'banner' column in the 'event' table where 'clubname' is 'Club A'
   const updateQuery = 'UPDATE event SET banner = ? WHERE clubname = ?';
-  const clubNameValue = 'Club B';
+ 
 
-  db.query(updateQuery, [imageData, clubNameValue], (err, results) => {
+  db.query(updateQuery, [imageData, clubname], (err, results) => {
     if (err) {
       console.error('Error updating banner in the database:', err);
       return res.status(500).json({ error: 'Internal Server Error', details: err.message });

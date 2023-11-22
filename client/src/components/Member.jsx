@@ -3,55 +3,61 @@ import React from 'react';
 const Member = ({ members }) => {
   return (
     <div>
-      <h3>Club Members</h3>
-      <table style={styles.table}>
-        <thead>
-          <tr>
-            <th style={styles.tableHeader}>SRN</th>
-            <th style={styles.tableHeader}>Name</th>
-            <th style={styles.tableHeader}>Domain</th>
-            <th style={styles.tableHeader}>Email ID</th>
-            <th style={styles.tableHeader}>Phone No.</th>
-            <th style={styles.tableHeader}>Semester</th>
-            <th style={styles.tableHeader}>Department</th>
-            <th style={styles.tableHeader}>Gender</th>
-          </tr>
-        </thead>
-        <tbody>
-          {members.map((member) => (
-            <tr key={member.SRN}>
-              <td style={styles.tableCell}>{member.SRN}</td>
-              <td style={styles.tableCell}>{member.name}</td>
-              <td style={styles.tableCell}>{member.domain}</td>
-              <td style={styles.tableCell}>{member.email}</td>
-              <td style={styles.tableCell}>{member.phoneno}</td>
-              <td style={styles.tableCell}>{member.sem}</td>
-              <td style={styles.tableCell}>{member.dept}</td>
-              <td style={styles.tableCell}>{member.gender}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h3 style={{ marginTop: '15px', textAlign: 'center' }}>Club Members</h3>
+      <div className="member-container" style={styles.memberContainer}>
+        {members.map((member) => (
+          <div key={member.SRN} style={styles.memberCard}>
+            <div>
+              <strong>Name:</strong> {member.name}
+            </div>
+            <div>
+              <strong>Domain:</strong> {member.domain}
+            </div>
+            <div>
+              <strong>Email ID:</strong> {member.email}
+            </div>
+            <div>
+              <strong>Phone No.:</strong> {member.phoneno}
+            </div>
+            <div>
+              <strong>Semester:</strong> {member.sem}
+            </div>
+            <div>
+              <strong>Department:</strong> {member.dept}
+            </div>
+            <div>
+              <strong>Gender:</strong> {member.gender}
+            </div>
+            <button style={styles.removeBtn}>Remove</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 const styles = {
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse',
-    marginTop: '20px',
+  memberContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    marginTop: '15px',
   },
-  tableHeader: {
-    background: '#007bff',
-    color: 'white',
-    padding: '10px',
-    textAlign: 'left',
-  },
-  tableCell: {
+  memberCard: {
     border: '1px solid #ccc',
+    borderRadius: '8px',
     padding: '10px',
-    textAlign: 'left',
+    margin: '10px',
+    width: '300px',
+  },
+  removeBtn: {
+    marginTop: '10px',
+    padding: '8px 16px',
+    backgroundColor: '#dc3545',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
   },
 };
 

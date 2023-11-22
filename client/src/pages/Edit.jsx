@@ -1,11 +1,10 @@
-// components/AddEvent.js
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const AddEvent = () => {
+const EditEvent = () => {
   const { clubname } = useParams();
+  const {eventname} = useParams();
   const navigate = useNavigate();
 
   const [eventDetails, setEventDetails] = useState({
@@ -18,15 +17,17 @@ const AddEvent = () => {
     registrationlink: '',
     banner: null, // Include banner in the state
   });
-
+  console.log(eventDetails);
   const handleChange = (e) => {
+    
     const { name, value, type, files } = e.target;
+    
     setEventDetails((prev) => ({
       ...prev,
       [name]: type === 'file' ? files[0] : value,
     }));
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -36,7 +37,7 @@ const AddEvent = () => {
       }
 
       // Make the API request to add the event
-      const res = await axios.post(`/events/${clubname}/event`, formData, {
+      const res = await axios.post(`/events/${clubname}/${eventname}/event/edit`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -55,7 +56,7 @@ const AddEvent = () => {
   return (
     <div className="add-event-container">
       <div className="auth">
-        <h1>Add Event</h1>
+        <h1>Update {eventname}</h1>
         <form encType="multipart/form-data">
           <input type="text" placeholder="Event Name" name="eventname" onChange={handleChange} />
           <textarea placeholder="Description" name="description" onChange={handleChange} />
@@ -65,11 +66,11 @@ const AddEvent = () => {
           <input type="text" placeholder="Budget" name="budget" onChange={handleChange} />
           <input type="text" placeholder="Registration Link" name="registrationlink" onChange={handleChange} />
           <input type="file" name="banner" onChange={handleChange} accept="image/*" />
-          <button onClick={handleSubmit}>Add Event</button>
+          <button onClick={handleSubmit}>Edit Event</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default AddEvent;
+export default EditEvent;

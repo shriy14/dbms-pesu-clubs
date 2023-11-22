@@ -1,13 +1,13 @@
-// Frontend: ImageUpload.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const ImageUpload = () => {
+const ImageUpload = ({ clubname, onChange }) => {
   const [image, setImage] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file);
+    onChange(e); // Pass the event to the parent component
   };
 
   const handleImageUpload = async () => {
@@ -15,7 +15,7 @@ const ImageUpload = () => {
     formData.append('image', image);
 
     try {
-      const response = await axios.post('/up', formData);
+      const response = await axios.post(`http://localhost:8800/api/events/${clubname}/upload`, formData);
 
       if (response.status === 200) {
         console.log('Image uploaded successfully');

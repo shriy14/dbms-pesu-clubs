@@ -9,8 +9,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ClubAdmin from "./pages/ClubAdmin";
 import ClubMember from "./pages/ClubMember";
+import AddEvent from "./pages/Event"
 import './Styles.scss'
 import ImageUploadForm from "./components/Image";
+import EditEvent from "./pages/Edit";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const router = createBrowserRouter([
   {
     path: "/upload", // Dynamic route for admin (club)
     element: <ImageUploadForm />,
+  },
+  {
+    path: ":clubname/event", // Dynamic route for admin (club)
+    element: <AddEvent />,
+  },
+  {
+    path: ":clubname/:eventname/event/edit", // Dynamic route for admin (club)
+    element: <EditEvent />,
   },
 
 ]);

@@ -1,156 +1,222 @@
-.app{
-    .container{
-        .auth {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-          }
-          h1{
-            text-align: center;
-          }
-          form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-          }
-          
-          label {
-            font-weight: bold;
-          }
-          
-          input[type="text"],
-          input[type="email"],
-          input[type="password"],
-          select {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-          }
-          
-          button {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 16px;
-          }
-          
-          button:hover {
-            background-color: #45a049;
-          }
-          
-          span {
-            margin-top: 10px;
-            text-align: center;
-          }
-          
-          .link {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: bold;
-          }
-          
-          .link:hover {
-            text-decoration: underline;
-          }
-          
-        
-       }
-    }
+/* home, login and register */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: url('https://img.freepik.com/free-photo/artistic-blurry-colorful-wallpaper-background_58702-8211.jpg') center/cover;
+}
+                                                            
+
+.app {
+  .container {
     .navbar {
-      background-color: #333;
+      opacity: 80%;
+      background-color: #3EC1D3;
       color: white;
-      padding: 10px 0;
+      padding: 15px 0;
     }
-    
+
     .navbar-container {
+      
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
+      height:25px;
     }
-    
+
     .navbar-link {
       color: white;
       text-decoration: none;
-      margin-left: 20px;
-    }
-    
-    .navbar-link:first-child {
-      margin-left: 0;
-    }
-    .footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      position: relative;
-      bottom: 0;
-      width: 100%;
-    }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .home {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 20px;
+      margin-left: 30px;
+      font-size: 18px;
+     
     }
 
-    .upcoming-events {
-      text-align: left; /* Align the text to the left */
-      width: 80%; /* Adjust the width as needed */
-      margin-bottom: 20px;
+    .navbar-link:first-child {
+      margin-left: 0;
+      margin-right: 850px;
     }
-    .event-container {
-      display: flex;
-      justify-content: space-between;
-      width: 80%; /* Adjust the width as needed */
-      margin-bottom: 20px;
+
+    .navbar-link:first-child {
+      font-weight: bold;
+      font-size: 28px;
+    }
+
+
+    .auth {
+      max-width: 400px;
+      margin: 20px auto;
       padding: 20px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+      background-color: white;
     }
-    
-    .even-event {
-      flex-direction: row-reverse; /* Reverse the order of elements for even events */
+
+    h1 {
+      text-align: center;
     }
-    
-    .event-image img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      margin-left: 20px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-    
-    .event-details {
-      text-align: left;
+
+    label {
+      font-weight: bold;
     }
-    
-    .event-details h2 {
-      font-size: 18px;
-      margin-bottom: 10px;
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
     }
-    
-    .event-details a {
-      color: #007bff;
+
+    button {
+      background-color: #3EC1D3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #64CDDB;
+    }
+
+    span {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .link {
+      color: #3EC1D3;
       text-decoration: none;
+      font-weight: bold;
     }
-    
-    .event-details a:hover {
+
+    .link:hover {
       text-decoration: underline;
     }
+  }
+
+  .footer {
+    position:static;
+    opacity: 80%;
+    bottom: 0;
+    width: 100%;
+    background-color: #3EC1D3;
+    padding: 10px;
+    text-align: center;
+    height:45px;
+  }
+
+  .footer-content {
+    text-align: center;
+    max-width: 1200px;
+    margin-top: 16px;
+    color: #f5f5f5;
+  }
+
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+  }
+
+  .upcoming-events {
+    text-align: left;
+    width: 80%;
+    margin-bottom: 20px;
+    color: #3EC1D3;
+  }
+
+  .event-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #64CDDB;
+    border-radius: 5px;
+    background-color: white;
+  }
+
+  .even-event {
+    flex-direction: row-reverse;
+  }
+
+  .event-image img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-left: 20px;
+  }
+
+  .event-details {
+    text-align: left;
+  }
+
+  .event-details h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .event-details a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .event-details a:hover {
+    text-decoration: underline;
+  }
+}
+
+
+
+.club-add-form {
+  & .form-row {
+    display: flex;
+    gap: 10px;
+
+    & select,
+    & input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      height: 40px; // Set the height to match the select
+    }
+
+    & select {
+      color: #3EC1D3;
+    }
+
+    & button {
+      background-color: #3EC1D3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      height: 40px; // Set the height to match the select
+    }
+  }
+}
+
+
 
 .club-admin-dashboard {
   text-align: center;
@@ -187,62 +253,159 @@
   background-color: #f5f5f5;
 }
 
-/* Add these styles in your CSS file or style section */
+
 
 .club-member-dashboard {
-  text-align: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #fff; // Set your preferred background color
+  color: #000; // Set your preferred text color
   padding: 20px;
-}
-
-.complete-profile-btn {
-  margin-top: 20px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.club-list {
-  margin-top: 30px;
-}
-
-.highlighted-clubs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.club-highlight {
-  margin: 5px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #2196f3;
-  color: white;
-}
-
-.add-club-btn {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-.add-event-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 15px auto;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 24px;
+      color: #3ec1d3;
+    }
+
+    .logout-btn {
+      background-color: #3ec1d3;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+
+      &:hover {
+        background-color: #64cddb;
+      }
+    }
+  }
+
+  .club-list {
+    h3 {
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .highlighted-clubs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      .club-highlight {
+        background-color: #3ec1d3;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+    }
+
+    .club-add-form {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      .form-row {
+        display: flex;
+        gap: 10px;
+
+        select,
+        input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        .add-club-btn {
+          background-color: #3ec1d3;
+          color: #fff;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+
+          &:hover {
+            background-color: #64cddb;
+          }
+        }
+      }
+    }
+  }
+  .upcoming-events-member{
+    .event-container-member{
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .volunteer-btn {
+      background-color: #3ec1d3;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-left: 650px;
+
+      &:hover {
+        background-color: #64cddb;
+      }
+    }
+  }
+  .upcoming-events {
+    h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .event-container {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+    
+   
+      h4 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+
+      
+    }
+  }
 }
 
-.add-event-form {
-  display: grid;
-  grid-row-gap: 15px;
+
+
+.form-row {
+  display: flex;
 }
 
-/* Add more styling as needed */
+.form-row input {
+  width: 50px; /* Set the desired width */
+  height: 30px; /* Set the desired height */
+  margin-right: 10px;
+}
+
+.form-row button {
+  height: 30px; /* Set the desired height */
+}
+

@@ -28,6 +28,8 @@ const Home = () => {
           <div className="event-details">
             <h2>{event.eventname}</h2>
             <p>{event.description}</p>
+            <p>Location: {event.loc}</p>
+            <p>Timestamp: {new Date(event.timestamp).toLocaleString()}</p>
             <a href={event.registrationlink} target="_blank" rel="noopener noreferrer">
               Registration Link
             </a>
@@ -37,6 +39,7 @@ const Home = () => {
               <img
                 src={`data:image/jpeg;base64,${btoa(String.fromCharCode(...new Uint8Array(event.banner.data)))}`}
                 alt={`Event ${event.eventid}`}
+                style={{ width: "200px", height: "auto" }} // Adjust the width as needed
               />
             )}
           </div>
