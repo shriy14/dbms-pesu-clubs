@@ -57,8 +57,8 @@ const ClubAdmin = () => {
         setClubMembers((prevMembers) =>
           prevMembers.filter((member) => member.SRN !== srn)
         );
-        console.log('Event deleted successfully');
-        alert('Event deleted successfully')
+        console.log('Member Removed successfully');
+        alert('Member Removed successfully')
       } else {
         console.error('Failed to delete event:', data);
       }
