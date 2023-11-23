@@ -119,10 +119,10 @@ const ClubAdmin = () => {
           const data = await response.json();
           setTotalBudget(data.totalBudget);
         } else {
-          console.error('Failed to fetch member count');
+          console.error('Failed to fetch budget');
         }
       } catch (error) {
-        console.error('Error fetching club details: ', error);
+        console.error('Error fetching budget: ', error);
       }
     };
 

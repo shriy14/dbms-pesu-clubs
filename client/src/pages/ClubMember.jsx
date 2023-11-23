@@ -23,16 +23,22 @@ const ClubMember = () => {
           const data = await response.json();
           setMemberDetails(data);
 
-          
           if (data && data.clubs.length > 0 && isMounted) {
-            const clubname = data.clubs[0];
-            const eventsResponse = await fetch(`/events/${clubname}`);
-            if (eventsResponse.ok && isMounted) {
-              const eventData = await eventsResponse.json();
-              setClubEvents(eventData);
-            } else {
-              console.error('Failed to fetch club events');
-            }
+            const clubEventsPromises = data.clubs.map(async (clubname) => {
+              const eventsResponse = await fetch(`/events/${clubname}`);
+              if (eventsResponse.ok) {
+                return eventsResponse.json();
+              } else {
+                console.error(`Failed to fetch events for club ${clubname}`);
+                return [];
+              }
+            });
+
+            const clubEventsData = await Promise.all(clubEventsPromises);
+            // Flatten the array of arrays into a single array of events
+            const allEvents = clubEventsData.flat();
+
+            setClubEvents(allEvents);
           }
         } else {
           console.error('Failed to fetch member details');

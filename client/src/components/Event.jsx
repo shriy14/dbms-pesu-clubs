@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-  const Event = ({ clubname, totalBudget, events, handleEdit, handleDelete }) => {
+  const Event = ({ clubname, budget, events, handleEdit, handleDelete }) => {
     return (
       <div style={styles.container}>
         <h3 style={styles.title}>Club Events</h3>
-        <p style={{ textAlign: 'center', marginTop: '10px' }}>Total Budget: {totalBudget}</p>
+      
+        <p style={{ textAlign: 'center', marginTop: '10px' }}>Total Budget: {budget}</p>
         {events.map((event) => (
           <div key={event.eventid} className="event-container" style={styles.eventContainer}>
             <div className="content" style={styles.content}>

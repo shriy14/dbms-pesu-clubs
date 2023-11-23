@@ -177,3 +177,4 @@ export const addEvent = (req, res) => {
     res.status(201).json({ message: 'Event added successfully', eventId: result.insertId });
   });
 };
+
