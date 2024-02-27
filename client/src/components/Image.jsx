@@ -7,7 +7,7 @@ const ImageUpload = ({ clubname, onChange }) => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file);
-    onChange(e); // Pass the event to the parent component
+    onChange(e); 
   };
 
   const handleImageUpload = async () => {
