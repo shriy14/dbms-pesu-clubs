@@ -3,7 +3,6 @@ import { db } from "../db.js";
 export const Upload = (req, res) => {
   const imageData = req.file.buffer;
   const { clubname } = req.params;
-  // Update the 'banner' column in the 'event' table where 'clubname' is 'Club A'
   const updateQuery = 'UPDATE event SET banner = ? WHERE clubname = ?';
  
 
