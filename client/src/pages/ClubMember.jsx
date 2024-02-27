@@ -35,7 +35,7 @@ const ClubMember = () => {
             });
 
             const clubEventsData = await Promise.all(clubEventsPromises);
-            // Flatten the array of arrays into a single array of events
+    
             const allEvents = clubEventsData.flat();
 
             setClubEvents(allEvents);
@@ -70,7 +70,6 @@ const ClubMember = () => {
       if (response.ok) {
         console.log('Club added successfully!');
         alert('Club added successfully!');
-        // You may want to update the state or perform additional actions after a successful club addition.
       } else {
         console.error('Failed to add club');
         alert('Failed to add club');
@@ -98,7 +97,6 @@ const ClubMember = () => {
       if (response.ok) {
         console.log('Volunteer added successfully!');
         alert('Volunteer added successfully!');
-        // You may want to update the state or perform additional actions after a successful volunteer addition.
       } else {
         console.error('Failed to add volunteer');
         alert('Failed to add volunteer');
