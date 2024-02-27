@@ -14,7 +14,7 @@ const AddEvent = () => {
     timestamp: '',
     budget: '',
     registrationlink: '',
-    banner: null, // Include banner in the state
+    banner: null, 
   });
 
   const handleChange = (e) => {
@@ -33,7 +33,7 @@ const AddEvent = () => {
         formData.append(key, eventDetails[key]);
       }
 
-      // Make the API request to add the event
+     
       const res = await axios.post(`/events/${clubname}/event`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
