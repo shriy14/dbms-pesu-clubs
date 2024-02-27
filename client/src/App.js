@@ -34,23 +34,23 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/member/:srn", // Dynamic route for member
+    path: "/member/:srn", 
     element: <ClubMember />,
   },
   {
-    path: "/admin/:clubname", // Dynamic route for admin (club)
+    path: "/admin/:clubname", 
     element: <ClubAdmin />,
   },
   {
-    path: "/upload", // Dynamic route for admin (club)
+    path: "/upload", 
     element: <ImageUploadForm />,
   },
   {
-    path: ":clubname/event", // Dynamic route for admin (club)
+    path: ":clubname/event", 
     element: <AddEvent />,
   },
   {
-    path: ":clubname/:eventname/edit", // Dynamic route for admin (club)
+    path: ":clubname/:eventname/edit", 
     element: <EditEvent />,
   },
 
