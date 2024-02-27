@@ -48,7 +48,7 @@ const Home = () => {
                   String.fromCharCode(...new Uint8Array(event.banner.data))
                 )}`}
                 alt={`Event ${event.eventid}`}
-                style={{ width: "200px", height: "auto" }} // Adjust the width as needed
+                style={{ width: "200px", height: "auto" }} 
               />
             )}
           </div>
