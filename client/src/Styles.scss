@@ -1,4 +1,4 @@
-/* home, login and register */
+
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
@@ -192,7 +192,7 @@ body {
       border: 1px solid #ccc;
       border-radius: 5px;
       box-sizing: border-box;
-      height: 40px; // Set the height to match the select
+      height: 40px; 
     }
 
     & select {
@@ -207,7 +207,7 @@ body {
       padding: 10px 20px;
       cursor: pointer;
       font-size: 16px;
-      height: 40px; // Set the height to match the select
+      height: 40px; 
     }
   }
 }
@@ -229,7 +229,7 @@ body {
   width: 100px;
 }
 
-/* Style for react-dropdown-select */
+
 .react-dropdown-select-container {
   width: 100px;
   margin: 0 auto;
@@ -253,8 +253,8 @@ body {
 
 .club-member-dashboard {
   font-family: 'Arial', sans-serif;
-  background-color: #fff; // Set your preferred background color
-  color: #000; // Set your preferred text color
+  background-color: #fff; 
+  color: #000; 
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -396,12 +396,12 @@ body {
 }
 
 .form-row input {
-  width: 50px; /* Set the desired width */
-  height: 30px; /* Set the desired height */
+  width: 50px; 
+  height: 30px; 
   margin-right: 10px;
 }
 
 .form-row button {
-  height: 30px; /* Set the desired height */
+  height: 30px; 
 }
 
