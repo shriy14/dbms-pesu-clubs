@@ -93,7 +93,7 @@ const styles = {
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'flex-start', // Align buttons to the left
+    justifyContent: 'flex-start', 
     marginTop: '10px',
   },
   button: {
