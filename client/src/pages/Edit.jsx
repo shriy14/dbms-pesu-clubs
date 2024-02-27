@@ -15,7 +15,7 @@ const EditEvent = () => {
     timestamp: '',
     budget: '',
     registrationlink: '',
-    banner: null, // Include banner in the state
+    banner: null, 
   });
   console.log(eventDetails);
   const handleChange = (e) => {
