@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-// import Members from '../components/Member';
 import Events from '../components/Event';
 import Members from '../components/Member'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-// import axios from "axios"
+
 
 const ClubAdmin = () => {
   const { clubname } = useParams();
@@ -13,8 +12,7 @@ const ClubAdmin = () => {
   const [clubMembers, setClubMembers] = useState([]);
   const [clubEvents, setClubEvents] = useState([]);
   const [memberCount, setMemberCount] = useState(null);
-  const [totalBudget, setTotalBudget] = useState(null); // New state for member count
-  const navigate = useNavigate();
+  const [totalBudget, setTotalBudget] = useState(null); 
     console.log(clubEvents)
     const handleDelete = async (eventname) => {
       
@@ -24,8 +22,7 @@ const ClubAdmin = () => {
         });
     
         const data = await response.json();
-    
-        // If the delete operation is successful, update the state to reflect the changes
+
         if (response.ok) {
           setClubEvents((prevEvents) =>
             prevEvents.filter((event) => event.eventname !== eventname)
@@ -52,7 +49,7 @@ const ClubAdmin = () => {
 
       const data = await response.json();
 
-      // If the delete operation is successful, update the state to reflect the changes
+    
       if (response.ok) {
         setClubMembers((prevMembers) =>
           prevMembers.filter((member) => member.SRN !== srn)
